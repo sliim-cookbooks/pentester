@@ -1,0 +1,13 @@
+.idea
+.project
+.bundle/
+.vagrant
+.coverage/
+*.swp
+Berksfile.lock
+Gemfile.lock
+Vagrantfile
+vendor
+cookbooks
+.kitchen/
+.kitchen.local.yml
