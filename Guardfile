@@ -1,3 +1,5 @@
+ignore(/flycheck_*/)
+
 guard 'foodcritic', cookbook_paths: '.' do
   watch(%r{attributes/.+\.rb$})
   watch(%r{providers/.+\.rb$})
@@ -8,11 +10,13 @@ guard 'foodcritic', cookbook_paths: '.' do
 end
 
 guard :rubocop do
-  watch(%r{/.+\.rb$/})
+  watch(/.+\.rb$/)
   watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
 end
 
 guard :rspec, cmd: 'bundle exec rspec' do
+  watch(%r{^recipes/(.+)\.rb$}) { |m| "spec/#{m[1]}_spec.rb" }
+
   require 'guard/rspec/dsl'
   dsl = Guard::RSpec::Dsl.new(self)
 
