@@ -9,7 +9,7 @@ guard 'foodcritic', cookbook_paths: '.' do
   watch('metadata.rb')
 end
 
-guard :rubocop do
+guard :rubocop, cli: ['-r', 'cookstyle'] do
   watch(/.+\.rb$/)
   watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
 end
